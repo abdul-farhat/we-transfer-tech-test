@@ -39,7 +39,7 @@ npm i
 ```
 ### Building containers
 ```
-npm run docker:buid
+npm run docker:build
 ```
 ### Run tests
 ```
@@ -77,4 +77,4 @@ You can change/update version of Selenium Server and associated webDrivers in [s
 You may want to use [this](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) plugin in VSCode to help with writing feature files
 
 ## Behind a Proxy
-You may need to set NO_PROXY=127.0.01 and/or the relevant HTTP_PROXY/HTTPS_PROXY variables.
+You may need to set NO_PROXY=127.0.0.1 and/or the relevant HTTP_PROXY/HTTPS_PROXY variables.
