@@ -6,8 +6,6 @@ services:
       context: .
     image: tech-tests
     environment: 
-      NO_PROXY: "${NO_PROXY}"
-      TEST_ENV: "${TEST_ENV}"
       BROWSER_: "${BROWSER_}"
       SUITE_: "${SUITE_}"
     volumes:
