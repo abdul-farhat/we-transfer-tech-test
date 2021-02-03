@@ -8,7 +8,7 @@ Automation Testing using WebDriver.IO Framework / Node JS / WebDriver API
 
 ### Building containers
 
-Open up a terminal and navigate to the root path of this repository.
+Open up a terminal and navigate to the root path of this repository. Then:
 
 ```
 docker build -f Dockerfile.linux.environment --tag=tech-test-base .
@@ -31,7 +31,7 @@ NOTE: set environment variables in .env file as required
 
 ### Install dependencies
 
-Open up a terminal and navigate to the root path of this repository.
+Open up a terminal and navigate to the root path of this repository. Then:
 
 ```
 npm i
@@ -56,7 +56,7 @@ NOTE: set environment variables in .env file as required
 
 ### Install dependencies
 
-Open up a terminal and navigate to the root path of this repository.
+Open up a terminal and navigate to the root path of this repository.  Then:
 
 ```
 npm i
@@ -67,7 +67,7 @@ npm run chrome
 ```
 
 ## Reports
-These are generated in the reporting dir - just open 'index.html' to access them after running the tests.
+These are generated in the 'reporting' folder - just open 'index.html' to access them after running the tests.
 
 ## Managing WebDriver Versions
 You can change/update version of Selenium Server and associated webDrivers in [selenium-webdriver-versions.json](./selenium-webdriver-versions.json)
