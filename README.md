@@ -25,9 +25,10 @@ NOTE: set environment variables in .env file as required
 ## Running Tests using Docker and NodeJS
 
 ### Prerequisites 
-- NodeJS v10/12/14
+- NodeJS v12/14
 - Docker Desktop
 - Docker Compose
+- Windows users: after installing node, also install build-tools as an admin i.e. npm i -g windows-build-tools
 
 ### Install dependencies
 
@@ -51,7 +52,7 @@ NOTE: set environment variables in .env file as required
 ### Prerequisites 
 - Chrome v88
 - Java v8
-- NodeJS v10/12/14 
+- NodeJS v12/14 
 - Windows users: after installing node, also install build-tools as an admin i.e. npm i -g windows-build-tools
 
 ### Install dependencies
