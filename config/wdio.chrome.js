@@ -1,9 +1,9 @@
 var defaults = require("./wdio.shared.conf").config;
 var _ = require("lodash");
-var path = require("path");
+const { join } = require("path");
 
-var download_dir = process.cwd() + '/downloads';
-console.log("DEEEEBUG: " + download_dir);
+var download_dir = join(process.cwd() + '/downloads');
+
 var overrides = {
     capabilities: [{
 

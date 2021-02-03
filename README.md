@@ -1,24 +1,28 @@
 # WeTransfer Tech Test
 Automation Testing using WebDriver.IO Framework / Node JS / WebDriver API
 
-## Running Tests using NodeJS
+## Running Tests using Docker only
 
 ### Prerequisites 
-- Chrome v88
-- Java 8
+- Docker Desktop - https://www.docker.com/products/docker-desktop
 
-### Install dependencies
+### Building containers
 ```
-npm i
+docker build -f Dockerfile.linux.environment --tag=tech-test-base .
+```
+```
+docker build --tag=tech-tests .
 ```
 ### Run tests
 ```
-npm run chrome
+docker-compose run --rm tests
 ```
+NOTE: set environment variables in .env file as required
 
 ## Running Tests using Docker and NodeJS
 
 ### Prerequisites 
+- NodeJS v10/12/14
 - Docker Desktop
 - Docker Compose
 
@@ -36,24 +40,22 @@ npm run docker:test
 ```
 NOTE: set environment variables in .env file as required
 
-## Running Tests using Docker only
+## Running Tests using NodeJS
 
 ### Prerequisites 
-- Docker Desktop
-- Docker Compose
+- Chrome v88
+- Java v8
+- NodeJS v10/12/14 
+- Windows users: after installing node, also install build-tools as an admin i.e. npm i -g windows-build-tools
 
-### Building containers
+### Install dependencies
 ```
-docker build -f Dockerfile.linux.environment --tag=tech-test-base .
-```
-```
-docker build --tag=tech-tests .
+npm i
 ```
 ### Run tests
 ```
-docker-compose run --rm tests
+npm run chrome
 ```
-NOTE: set environment variables in .env file as required
 
 ## Reports
 These are generated in the reporting dir - just open 'index.html' to access them after running the tests.
