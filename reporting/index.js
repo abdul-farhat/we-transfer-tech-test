@@ -168,7 +168,7 @@ var app = new Vue({
     el: '#app',
     data: {
         title: 'Example Test Report',
-        logo: 'https://drive.google.com/uc?export=view&id=1Mku0Xn73MjWkJEqeZIa2W26qEEoLinHp',
+        logo: 'https://drive.google.com/uc?export=view&id=1xiNpGqHnu7T1aWfpAiRFt-mNcU-2mcPx',
         scenarioName: scenarioName,
         scenarioDuration: scenarioDuration,
         scenarioStepName: scenarioStepName,

@@ -7,6 +7,9 @@ Automation Testing using WebDriver.IO Framework / Node JS / WebDriver API
 - Docker Desktop - https://www.docker.com/products/docker-desktop
 
 ### Building containers
+
+Open up a terminal and navigate to the root path of this repository.
+
 ```
 docker build -f Dockerfile.linux.environment --tag=tech-test-base .
 ```
@@ -27,6 +30,9 @@ NOTE: set environment variables in .env file as required
 - Docker Compose
 
 ### Install dependencies
+
+Open up a terminal and navigate to the root path of this repository.
+
 ```
 npm i
 ```
@@ -49,6 +55,9 @@ NOTE: set environment variables in .env file as required
 - Windows users: after installing node, also install build-tools as an admin i.e. npm i -g windows-build-tools
 
 ### Install dependencies
+
+Open up a terminal and navigate to the root path of this repository.
+
 ```
 npm i
 ```
@@ -61,7 +70,10 @@ npm run chrome
 These are generated in the reporting dir - just open 'index.html' to access them after running the tests.
 
 ## Managing WebDriver Versions
-You can change/update version of Selenium Server and associated webDrivers in [selenium-webdriver-versions.js](./selenium-webdriver-versions.js)
+You can change/update version of Selenium Server and associated webDrivers in [selenium-webdriver-versions.json](./selenium-webdriver-versions.json)
 
 ## VSCode Cucumber Plugin
 You may want to use [this](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) plugin in VSCode to help with writing feature files
+
+## Behind a Proxy
+You may need to set NO_PROXY=127.0.01 and/or the relevant HTTP_PROXY/HTTPS_PROXY variables.
