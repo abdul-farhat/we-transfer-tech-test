@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc -b",
-    "clean": "rimraf ./reporting/json/* ./reporting/data.js rrorScreenshots ./specs/step-definitions/test-data/download/* ./downloads/*",
+    "clean": "rimraf ./reporting/json/* ./reporting/data.js errorScreenshots ./specs/step-definitions/test-data/download/* ./downloads/*",
     "clean:docker": "rimraf ./reporting/json/* ./reporting/data.js ./specs/step-definitions/test-data/download/* ./downloads/*",
     "eslint": "npx eslint ./lib/**/* ./page-objects/**/* ./specs/**/*.ts",
     "eslint-fix": "npx eslint ./lib/**/* ./page-objects/**/* ./specs/**/*.ts --fix",
