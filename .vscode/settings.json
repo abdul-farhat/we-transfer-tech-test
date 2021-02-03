@@ -1,0 +1,32 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    },
+    "cucumberautocomplete.steps": ["specs/step-definitions/**/*.ts"],
+    "cucumberautocomplete.smartSnippets": true,
+    "cucumberautocomplete.syncfeatures": "/specs/features/**/*.feature",
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "cucumberautocomplete.stepsInvariants": true,
+    "cucumberautocomplete.customParameters": [{
+        "parameter": "{ab}",
+        "value": "(a|b)"
+    }],
+    "cucumberautocomplete.skipDocStringsFormat": true,
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "feature"
+    ],
+    "spellright.parserByClass": {
+        "feature": {
+            "parser": "plain"
+        }
+    },
+}

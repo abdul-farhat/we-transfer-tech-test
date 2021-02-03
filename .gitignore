@@ -1,0 +1,14 @@
+.idea
+*_test.png
+errorScreenshots
+logs
+node_modules
+remote-profile
+reporting/data.js
+reporting/json/*
+reports
+selenium-log.log
+selenium-debug.log
+temp/*
+!temp/.gitkeep
+compiled

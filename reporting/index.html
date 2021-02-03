@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <title id="tab">{{label}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div class="container jumbotron" id="app">
+        <div class="card bg-dark text-white" >
+            <img :src="logo"
+                title="Love the logo!" class="img-fluid" />
+            <div class="card-img-overlay">
+                <h1 class="display-4">
+                    {{title}}
+                </h1>
+                <h3>
+                    Generated on:
+                    <small class="text-muted">
+                        {{date}}
+                    </small>
+                </h3>
+            </div>
+        </div>
+        <div>
+            <br>
+            <div class="lead">Steps</div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="table-active text-center">Total</th>
+                            <th scope="col" class="table-success text-center">Passed</th>
+                            <th scope="col" class="table-danger text-center">Failed</th>
+                            <th scope="col" class="table-warning text-center">Broken</th>
+                            <th scope="col" class="table-light text-center">Skipped</th>
+                            <th scope="col" class="table-dark text-center">Unknown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="text-center">{{ passedSteps + failedSteps + brokenSteps + skippedSteps + unknownSteps }}</th>
+                            <th scope="col" class="text-center">{{ passedSteps }}</th>
+                            <th scope="col" class="text-center">{{ failedSteps }}</th>
+                            <th scope="col" class="text-center">{{ brokenSteps }}</th>
+                            <th scope="col" class="text-center">{{ skippedSteps }}</th>
+                            <th scope="col" class="text-center">{{ unknownSteps }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+            <div class="lead">Scenarios</div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="table-active text-center">Total</th>
+                            <th scope="col" class="table-success text-center">Passed</th>
+                            <th scope="col" class="table-danger text-center">Failed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="text-center">{{ failedScenarios + passedScenarios }}</th>
+                            <th scope="col" class="text-center">{{ passedScenarios }}
+                            </th>
+                            <th scope="col" class="text-center">{{ failedScenarios }}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="my-4">
+        <div>
+            <template v-for="(name, index) in scenarioName">
+
+                <div v-for="value in scenarioStatus[index]"
+                    :class="['card border-secondary mb-3', {'border-success' : value === 'passed', 'border-danger' : value === 'failed' }]">
+                </div>
+                <div v-for="value in scenarioStatus[index]" class="card-header">
+                    {{name}}
+                    <span v-if="value"
+                        :class="['badge badge-pill', {'badge-success' : value === 'passed', 'badge-danger' : value === 'failed' }]">{{value}}
+                    </span>
+
+                    <span v-if="browserName"
+                        :class="['badge badge-pill', {'badge-success' : value === 'passed', 'badge-danger' : value === 'failed' }]">
+                        <i :class="['fab', 'fa-'+browserName ]" style='color: white'></i>
+                        {{browserName}} {{browserVersion}}
+                    </span>
+                    
+                    <span v-if="environment"
+                        :class="['badge badge-pill', {'badge-success' : value === 'passed', 'badge-danger' : value === 'failed' }]">
+                        <i :class="['fa', 'fa-desktop' ]" style='color: white'></i>
+                        {{environment}}
+                    </span>
+                </div>
+
+                <div class="card-body">
+                    <!-- CARD TEXT -->
+                    <p class="card-text">
+                        <b>total duration:</b> {{scenarioDuration[index]}}s
+                        <br>
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Steps</th>
+                                    <th scope="col">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr v-for="value in scenarioStepName[index]" :class="{
+                                            'table-success' : value.status === 'passed', 
+                                            'table-danger' : value.status === 'failed', 
+                                            'table-light' : value.status === 'skipped',
+                                            'table-warning' : value.status === 'broken',
+                                            'table-dark' : value.status === 'unknown',
+                                        }">
+                                    <td>{{value.step}}</td>
+                                    <td>{{value.roundedDuration}}s</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </template>
+
+        </div>
+
+
+    </div>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

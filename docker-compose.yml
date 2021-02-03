@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+
+  tests:
+    build:
+      context: .
+    image: tech-tests
+    environment: 
+      NO_PROXY: "${NO_PROXY}"
+      TEST_ENV: "${TEST_ENV}"
+      BROWSER_: "${BROWSER_}"
+      SUITE_: "${SUITE_}"
+    volumes:
+      - type: bind
+        source: ./reporting
+        target: /framework/reporting

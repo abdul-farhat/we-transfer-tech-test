@@ -1,0 +1,60 @@
+# ---- Base Node ----
+FROM adoptopenjdk/openjdk8 as base
+LABEL maintainer "Tim Brust <tim.brust@sinnerschrader.com>"
+
+ARG REFRESHED_AT
+ENV REFRESHED_AT $REFRESHED_AT
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# Install nodejs/yarn
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -qq --no-install-recommends \
+  nodejs \
+  yarn \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
+
+# Set the locale
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
+ENV LANG en_US.UTF-8  
+
+# ---- Chrome Dependencies ----
+# install chrome dependencies and debugging tools
+WORKDIR /chrome
+RUN apt-get install -qq --no-install-recommends \
+fonts-liberation \
+libappindicator3-1 \
+libxss1 \
+xdg-utils \
+libasound2 \
+libnspr4 \
+libnss3 \
+libxtst6 \
+zip \
+htop \
+build-essential \
+python
+
+# ----- Install Chrome ----
+#download and install chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+# set working directory and copy files
+WORKDIR /framework
+COPY ./package*.json ./
+
+# ---- Node Dependencies ----
+# install node packages
+FROM base AS dependencies
+RUN npm -v && node -v
+RUN npm i
+RUN echo $HOSTNAME
