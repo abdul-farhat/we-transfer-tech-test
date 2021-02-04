@@ -4,8 +4,8 @@ import { page, homepage } from 'page-objects';
 import { attachFile, waitForFileToDownload } from 'lib';
 import sha256File = require('sha256-file');
 
-const uploadFile = __dirname + '/test-data/upload/less_than_1mb.pdf';
-const downloadedFile = process.cwd() + '/downloads/less_than_1mb.pdf';
+const uploadDir= __dirname + '/test-data/upload/';
+const downloadDir = process.cwd() + '/downloads/';
 
 Given(/^.* navigates to the homepage$/, () => {
     page.open('/');
@@ -14,22 +14,27 @@ Given(/^.* navigates to the homepage$/, () => {
     return;
 });
 
-Given(/^.* uploads a file to share$/, () => {
+Given(/^.* uploads files called '(.*)' and '(.*)'$/, (fileOne: string, fileTwo: string) => {
     homepage.prepareUploaderToSendFilesWithoutRegistering();
-    attachFile(homepage.addYourFiles, uploadFile);
+    attachFile(homepage.addYourFiles, uploadDir + fileOne);
+    attachFile(homepage.addYourFiles, uploadDir + fileTwo);
     return;
 });
 
-Then(/^.* downloads it$/, () => {
+Then(/^.* navigates to the shared link$/, () => {
     page.open(homepage.sharedLink());
-    homepage.clickToStartFileDownload();
-    waitForFileToDownload(downloadedFile, 15000);
     return;
 });
 
-Then(/^.* verifies it$/, () => {
+Then(/^.* downloads the file '(.*)'$/, (fileOne: string) => {
+    homepage.clickToStartFileDownload(fileOne);
+    waitForFileToDownload(downloadDir + fileOne, 15000);
+    return;
+});
+
+Then(/^.* verifies the file '(.*)'$/, (fileOne: string) => {
     //const shaCheck = '74747483829';
-    const shaCheck = sha256File(uploadFile);
-    expect(shaCheck).toEqual(sha256File(downloadedFile));
+    const shaCheck = sha256File(uploadDir + fileOne);
+    expect(shaCheck).toEqual(sha256File(downloadDir + fileOne));
     return;
 });

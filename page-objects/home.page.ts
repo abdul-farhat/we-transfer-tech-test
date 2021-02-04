@@ -6,12 +6,21 @@ class HomePage {
     public get transferByLinkButton(): WebdriverIO.Element { return $('label.radioinput__label[for="transfer__type-link"]'); }
     public get addYourFilesHeading(): WebdriverIO.Element { return $('.uploader__empty-state h2'); }
     public get addYourFiles(): WebdriverIO.Element { return $('input[type="file"]'); }
-    public get getLink(): WebdriverIO.Element { return $('button.transfer__button'); }
+    public get getLink(): WebdriverIO.Element { return $('//button[text()="Get a link"]'); }
     public get getURL(): WebdriverIO.Element { return $('input.transfer-link__url'); }
+    public get fileDownloadButton(): string { return '//h6[text()="value"]/../..//div[@class="filelist__action"]'; }
+    public get fileDownloadedIcon(): string { return '//h6[text()="value"]/../..//div[@class="filelist__action filelist__action--downloaded"]'; }
     
-    clickToStartFileDownload(): void {
-        this.getLink.waitForClickable();
-        this.getLink.click();
+    // clickToStartFileDownload(): void {
+    //     this.getLink.waitForClickable();
+    //     this.getLink.click();
+    // }
+
+    clickToStartFileDownload(fileName: string): void {
+        const fileDownload = this.fileDownloadButton.replace('value', fileName);
+        browser.$(fileDownload).waitForClickable();
+        browser.$(fileDownload).click();
+        return;
     }
 
     agreeConditionsForFirstTimeUser(): void {
