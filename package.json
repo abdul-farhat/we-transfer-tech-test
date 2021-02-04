@@ -10,7 +10,7 @@
     "eslint": "npx eslint ./lib/**/* ./page-objects/**/* ./specs/**/*.ts",
     "eslint-fix": "npx eslint ./lib/**/* ./page-objects/**/* ./specs/**/*.ts --fix",
     "selenium-standalone": "npx selenium-standalone install --config=./selenium-webdriver-versions.json",
-    "prechrome:docker": "failsafe clean:docker build eslint",
+    "prechrome:docker": "failsafe clean:docker build eslint selenium-standalone",
     "chrome:docker": "wdio ./config/wdio.chrome.js",
     "prechrome": "failsafe clean build eslint selenium-standalone",
     "chrome": "wdio ./config/wdio.chrome.js",

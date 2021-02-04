@@ -12,3 +12,4 @@ selenium-debug.log
 temp/*
 !temp/.gitkeep
 compiled
+downloads/*
