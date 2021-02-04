@@ -7,7 +7,7 @@ services:
     image: tech-tests
     environment: 
       BROWSER_: "${BROWSER_}"
-      SUITE_: "${SUITE_}"
+      WDIO_ARGS_: "${WDIO_ARGS_}"
     volumes:
       - type: bind
         source: ./reporting

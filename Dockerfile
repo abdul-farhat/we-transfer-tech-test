@@ -16,9 +16,9 @@ RUN npm run selenium-standalone
 RUN npm run build
 
 ARG browser
-ARG suite
+ARG wdio_args
 
 ENV BROWSER_ $browser
-ENV SUITE_ $suite
+ENV WDIO_ARGS_ $wdio_args
 
-ENTRYPOINT npm run ${BROWSER_}:docker -- ${SUITE_}
+ENTRYPOINT npm run ${BROWSER_}:docker -- ${WDIO_ARGS_}
