@@ -24,7 +24,7 @@ NOTE: set environment variables in .env file as required. You can pass through W
 
 For help with options see: https://webdriver.io/docs/clioptions.html
 
-For help with tags see: https://cucumber.io/docs/cucumber/api/#tags
+For help with tags see: https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-cucumber-framework
 
 ## Running Tests using Docker and NodeJS
 
