@@ -4,7 +4,6 @@ export function attachFile(
     element: WebdriverIO.Element,
     filePath: string
 ): boolean {
-    browser.execute((el) => (el.style.display = "block"), element);
     element.waitForExist();
     element.setValue(filePath);
     return element.isDisplayed();
