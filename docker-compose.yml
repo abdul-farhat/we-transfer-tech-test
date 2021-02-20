@@ -8,6 +8,7 @@ services:
     environment: 
       BROWSER_: "${BROWSER_}"
       WDIO_ARGS_: "${WDIO_ARGS_}"
+      TEST_ENV: "${TEST_ENV}"
     volumes:
       - type: bind
         source: ./reporting

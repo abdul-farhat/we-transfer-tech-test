@@ -1,7 +1,7 @@
 class HomePage {
 
-    public get agreeTandCsButton(): WebdriverIO.Element { return $('button.button.welcome__agree.button--enabled'); }
-    public get agreeCookiesButton(): WebdriverIO.Element { return $('div.welcome__buttons button.button.welcome__button.welcome__button--accept'); }
+    public get agreeTandCsButton(): WebdriverIO.Element { return $('//button[text()="I agree"]'); }
+    public get agreeCookiesButton(): WebdriverIO.Element { return  $('//button[text()="I accept"]'); }
     public get optionsButton(): WebdriverIO.Element { return $('button.transfer__toggle-options'); }
     public get transferByLinkButton(): WebdriverIO.Element { return $('label.radioinput__label[for="transfer__type-link"]'); }
     public get addYourFilesHeading(): WebdriverIO.Element { return $('.uploader__empty-state h2'); }
@@ -24,13 +24,13 @@ class HomePage {
     }
 
     agreeConditionsForFirstTimeUser(): void {
-        this.agreeTandCsButton.waitForDisplayed();
-        this.agreeTandCsButton.click();
-        this.agreeTandCsButton.waitForDisplayed({ reverse: true });
-
         this.agreeCookiesButton.waitForClickable();
         this.agreeCookiesButton.click();
         this.agreeCookiesButton.waitForDisplayed({ reverse: true });
+
+        this.agreeTandCsButton.waitForDisplayed();
+        this.agreeTandCsButton.click();
+        this.agreeTandCsButton.waitForDisplayed({ reverse: true });
     }
 
     prepareUploaderToSendFilesWithoutRegistering(): void {

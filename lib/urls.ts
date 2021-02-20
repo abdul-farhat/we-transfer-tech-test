@@ -1,4 +1,4 @@
-let url: string = process.env.TEST_ENV;
+let url = "https://www.wetransfer.com";
 const environmentUri: string = process.env.TEST_ENV;
 
 switch (environmentUri) {
@@ -19,7 +19,6 @@ switch (environmentUri) {
         url = environmentUri;
         break;
     default:
-        url = "https://www.wetransfer.com";
         break;
 }
 
