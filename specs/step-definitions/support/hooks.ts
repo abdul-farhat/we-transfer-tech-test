@@ -1,4 +1,4 @@
-import { After, Before, BeforeAll } from "cucumber";
+import { After} from "cucumber";
 
 After((scenarioResult) => {
     if (scenarioResult.result.status === 'failed')

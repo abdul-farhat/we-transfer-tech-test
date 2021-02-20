@@ -1,10 +1,10 @@
-let url = "https://test.net";
+let url: string = process.env.TEST_ENV;
 const environmentUri: string = process.env.TEST_ENV;
 
 switch (environmentUri) {
 
     case "dev":
-        url = "https://dev.test.net";
+        url = "https://www.wetransfer.com";
         break;
     case "qa":
         url = "https://dev.test.net";
@@ -19,7 +19,8 @@ switch (environmentUri) {
         url = environmentUri;
         break;
     default:
+        url = "https://www.wetransfer.com";
         break;
 }
 
-export {url};
+export default {url};

@@ -1,5 +1,4 @@
 import { Given, Then } from 'cucumber';
-import { Expect } from 'expect-webdriverio';
 import { page, homepage } from 'page-objects';
 import { attachFile, waitForFileToDownload } from 'lib';
 import sha256File = require('sha256-file');

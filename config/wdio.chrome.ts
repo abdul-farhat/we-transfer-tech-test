@@ -1,10 +1,10 @@
-var defaults = require("./wdio.shared.conf").config;
-var _ = require("lodash");
-const { join } = require("path");
+const defaults = require("./wdio.shared.conf").config;
+import _ from "lodash";
+import { join } from "path";
 
-var download_dir = join(process.cwd() + '/downloads');
+const downloadDir = join(process.cwd() + '/downloads');
 
-var overrides = {
+const overrides = {
     capabilities: [{
 
         browserName: 'chrome',
@@ -14,8 +14,8 @@ var overrides = {
             prefs: {
                 'directory_upgrade': true,
                 'prompt_for_download': false,
-                'download.default_directory': download_dir,
-              },
+                'download.default_directory': downloadDir,
+            },
             args: [
                 '--disable-gpu',
                 '--no-sandbox',

@@ -1,6 +1,7 @@
-let selArgs = require('../selenium-webdriver-versions.json');
-const { url } = require('../compiled/lib/urls');
-const { combine } = require('combine-json');
+import selArgs from '../selenium-webdriver-versions.json';
+import { url } from '../lib';
+import { combine } from 'combine-json';
+import fs from 'fs';
 
 exports.config = {
     //
@@ -52,7 +53,7 @@ exports.config = {
             device: 'Desktop'
         }
     }],
-        //     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+    //     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
     //     // grid with only 5 firefox instances available you can make sure that not more than
     //     // 5 instances get started at a time.
     //     maxInstances: 1,
@@ -103,7 +104,8 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://www.wetransfer.com',
+    
+    baseUrl: url.url,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -159,7 +161,7 @@ exports.config = {
         [ 'cucumberjs-json', {
             jsonFolder: './reporting/json/',
             language: 'en',
-            },
+        },
         ],
     ],
     
@@ -169,8 +171,8 @@ exports.config = {
         backtrace: false,   // <boolean> show full backtrace for errors
         requireModule: [
             'tsconfig-paths/register',
-            () => {
-                require('ts-node').register({ files: true });
+            (): any => {
+                require('ts-node').register({ transpileOnly: true });
             },
         ],  // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
         dryRun: false,      // <boolean> invoke formatters without executing steps
@@ -199,13 +201,12 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: function (config, capabilities) {
-        var fs = require('fs');
-        var dir = './errorScreenshots';
+    onPrepare: function (): void {        
+        const dir = './errorScreenshots';
 
-        if (!fs.existsSync(dir)) {
+        if (!fs.existsSync(dir)) 
             fs.mkdirSync(dir);
-        }
+        
     },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
@@ -303,20 +304,18 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    onComplete: function(exitCode, config, capabilities, results) {
-        var fs = require('fs');
-        
-        async function mergeJson() {
-            const myBigJsonObject = await combine('./reporting/json')
-            let data = JSON.stringify(myBigJsonObject);
-            let jsData = 'reportingData = ' + data;
+    onComplete: function(exitCode): void {    
+        async function mergeJson(): Promise<void> {
+            const myBigJsonObject = await combine('./reporting/json');
+            const data = JSON.stringify(myBigJsonObject);
+            const jsData = 'reportingData = ' + data;
         
             fs.writeFile("./reporting/data.js", jsData, function (err) {
                 if (err)
                     console.log(err);
         
             });
-        }
+        };
         mergeJson();
     },
     /**
@@ -326,4 +325,4 @@ exports.config = {
     */
     //onReload: function(oldSessionId, newSessionId) {
     //}
-}
+};
